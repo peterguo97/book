@@ -1,0 +1,21 @@
+{
+  "entry": "src/index.js",
+  "extraBabelPlugins": [
+    "transform-runtime",
+    "transform-runtime",
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime"
+      ]
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime"
+      ]
+    }
+  }
+}
