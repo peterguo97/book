@@ -4,13 +4,7 @@ export default {
   namespace: 'book',
 
   state: {
-    list:[
-      'Racing car sprays burning fuel into crowd.',
-      'Japanese princess to wed commoner.',
-      'Australian walks 100km after outback crash.',
-      'Man charged over missing wedding girl.',
-      'Los Angeles battles huge wildfires.',
-    ]
+    list:[],
   },
 
   effects: {
@@ -23,6 +17,10 @@ export default {
     getdata(state, action) {
       return { ...state, ...action.payload };
     },
+    add(state,{payload: data}){
+      state.list.push(data);
+      return state;
+    }
   },
 
   subscriptions: {
