@@ -14,7 +14,6 @@ const formTailLayout = {
 };
 class TextInput extends React.Component {
     handleClick() {
-        let that = this;
         let book = {
             name : this.props.form.getFieldValue('bookname'),
             description: this.props.form.getFieldValue('description'),
