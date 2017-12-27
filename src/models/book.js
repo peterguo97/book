@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 export default {
 
   namespace: 'book',
@@ -8,14 +8,25 @@ export default {
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
+    *fetch() {
+      axios.get('/book').then(function (res) {
+        console.log(res);
+      })
     },
+    *savebook( { payload: data } ){
+      axios.post('/book/input',{payload: data})
+      .then(function (res) {
+        console.log(res);
+      })
+      .catch( function(err){
+        console.log(err);
+      })
+    }
   },
 
   reducers: {
-    getdata(state, action) {
-      return { ...state, ...action.payload };
+    getdata(state, {payload: data}) {
+      return { ...state, data };
     },
     add(state,{payload: data}){
       state.list.push(data);
@@ -24,7 +35,12 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
+    setup({ dispatch, history }) {
+      history.listen(({pathname})=>{
+        if(pathname === '/'){
+          dispatch({ type: 'fetch'});
+        }
+      })
     },
   },
 };

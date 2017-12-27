@@ -7,10 +7,14 @@ router.get('/',(req,res)=>{
     .then((books)=>{
         res.send(books)
     })
+    .catch((err)=>{
+        console.log(err);
+    })
 })
 
-router.post('/add',(req,res)=>{
+router.post('/input',(req,res)=>{
     let book = req.body;
+    console.log(book);
     BookModel.addBook(book)
     .then(()=>{
         res.send('提交成功');

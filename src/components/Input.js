@@ -23,7 +23,7 @@ class TextInput extends React.Component {
             if(!err){
                 console.info('success');
                 this.props.dispatch({
-                    type: 'book/add',
+                    type: 'book/savebook',
                     payload: book
                 })
             }

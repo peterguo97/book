@@ -6,19 +6,19 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/book',{useMongoClient: true});
 var db = mongoose.connection;
 db.on("error", function (err) {
-    console.log("数据库连接失败：" + error)
+    console.log("数据库连接失败：" + err)
 })
 
 db.on("openUri", function () {
     console.log("数据库链接成功");
 })
 
-const BookSchemea = Schema({
-    title: {
+const BookSchema = Schema({
+    name: {
         unique: true,
         type: 'String',
     },
-    summary: 'String',
+    description: 'String',
     price: 'Number',
     meta: {
         createAt: {

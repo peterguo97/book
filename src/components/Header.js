@@ -8,11 +8,11 @@ const MenuItemGroup = Menu.ItemGroup;
 function Head(){
     return(
         <Menu
-        selectedKeys={[location.pathname]}
+        defaultSelectedKeys={['1']}
         mode="horizontal"
         theme="light"
         >
-        <Menu.Item key="/">
+        <Menu.Item key="1">
             <Link to="/"><Icon type="home" />Home</Link>
         </Menu.Item>
         <Menu.Item key="/input">
