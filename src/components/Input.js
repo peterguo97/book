@@ -21,7 +21,6 @@ class TextInput extends React.Component {
         }
         this.props.form.validateFields( (err) => {
             if(!err){
-                console.info('success');
                 this.props.dispatch({
                     type: 'book/savebook',
                     payload: book
@@ -74,7 +73,7 @@ class TextInput extends React.Component {
 
 TextInput = Form.create({})(TextInput);
 const mapStateToProps = ({book}) => {
-    return { data: book.list[0]};
+    return {};
 };
 
 export default connect(mapStateToProps)(TextInput);

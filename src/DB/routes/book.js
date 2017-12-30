@@ -15,13 +15,10 @@ router.get('/',(req,res)=>{
 router.post('/input',(req,res)=>{
     let book = req.body;
     console.log(book);
-    BookModel.addBook(book)
-    .then(()=>{
+    var isSave = BookModel.addBook(book);
+    if(isSave){
         res.send('提交成功');
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    }
 })
 
 router.get('/:bookId/edit', (req, res) => {
@@ -39,10 +36,7 @@ router.post('/:bookId/edit', (req, res) => {
             BookModel.editBook(req.params.bookId,book)
         })
         .then(()=>{
-            res.send({
-                status: 1,
-                data: 'success'
-            })
+            res.send({data: 'success'})
         })
         .catch(err => console.log(err))
 })

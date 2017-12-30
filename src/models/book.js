@@ -1,44 +1,53 @@
-import axios from 'axios';
+import axios from 'axios'
 export default {
 
   namespace: 'book',
 
   state: {
     list:[],
+    loading: false
   },
 
   effects: {
-    *fetch() {
-      axios.get('/book').then(function (res) {
-        console.log(res);
-      })
+    *fetch({payload: detail},{call,put}) {
+      try {
+        const res = yield axios.get(`/${detail}`);
+        const data = res.data;
+        console.log(data);
+        yield put({
+          type: 'save',
+          payload: data
+        }) 
+      } catch (error) {
+        console.log(error);
+      }     
     },
-    *savebook( { payload: data } ){
-      axios.post('/book/input',{payload: data})
-      .then(function (res) {
-        console.log(res);
-      })
-      .catch( function(err){
-        console.log(err);
-      })
+    *savebook({payload: data},{call,put}){
+      const res = yield axios.post('/book/input', data);
+      if (res.status == 200) {
+        yield put({ type: 'isLoading' })
+      }
     }
   },
 
   reducers: {
-    getdata(state, {payload: data}) {
-      return { ...state, data };
+    save(state, { payload: data }) {
+      console.log('hello');
+      const list = data;
+      console.log(list);
+      return { ...state, list };
     },
-    add(state,{payload: data}){
-      state.list.push(data);
-      return state;
+    isLoading(state){
+      const isLoading = !state.isLoading;
+      return { ...state,isLoading };
     }
   },
-
+  
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(({pathname})=>{
+      return history.listen(({pathname})=>{
         if(pathname === '/'){
-          dispatch({ type: 'fetch'});
+          dispatch({ type: 'fetch', payload: 'book'});
         }
       })
     },

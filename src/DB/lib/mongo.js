@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/book',{useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/pasbook',{useMongoClient: true});
 var db = mongoose.connection;
 db.on("error", function (err) {
     console.log("数据库连接失败：" + err)
 })
 
-db.on("openUri", function () {
+db.on("open", function () {
     console.log("数据库链接成功");
 })
 
@@ -19,7 +19,7 @@ const BookSchema = Schema({
         type: 'String',
     },
     description: 'String',
-    price: 'Number',
+    price: 'String',
     meta: {
         createAt: {
             type: Date,
