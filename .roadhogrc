@@ -6,6 +6,13 @@
     "transform-runtime",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
   ],
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3000/book",
+      "changeOrigin": true,
+      "pathRewrite": { "^/api" : "" }
+    }
+  },
   "env": {
     "development": {
       "extraBabelPlugins": [

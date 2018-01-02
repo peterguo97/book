@@ -11,7 +11,7 @@ export default {
   effects: {
     *fetch({payload: detail},{call,put}) {
       try {
-        const res = yield axios.get(`/${detail}`);
+        const res = yield axios.get(`/${detail}`,{headers:{"Content-Type":""}});
         const data = res.data;
         console.log(data);
         yield put({
