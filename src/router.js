@@ -3,6 +3,7 @@ import { Router, Route } from 'dva/router';
 import MainLayout from './components/MainLayout';
 import Input from './components/Input';
 import List from './components/List';
+import BookList from './components/BookList';
 import WrappedLoginform from './components/Login';
 
 function RouterConfig({ history }) {
@@ -12,6 +13,7 @@ function RouterConfig({ history }) {
         <Route path="/" component={List} />
         <Route path="/input" component={Input} />
         <Route path='/login' component={WrappedLoginform} />
+        <Route path="/list1" component={BookList} />
       </Route>
     </Router>
   );
